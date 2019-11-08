@@ -1,0 +1,75 @@
+﻿<Window x:Class="JobHunt2k.EditJobListingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JobHunt2k"
+        mc:Ignorable="d"
+        Title="EditJobListingWindow" Height="485" Width="800">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Display Title:</Label>
+                <TextBox x:Name="DisplayTitle_TextBox" Width="175" Height="20"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Source:</Label>
+                <TextBox x:Name="Source_TextBox" Width="175" Height="20"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Id:</Label>
+                <TextBox x:Name="JobLeadId_TextBox" Width="220" Height="17" IsEnabled="False" FontSize="11" TextAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Company Name:</Label>
+                <TextBox x:Name="CompanyName_TextBox" Width="165" Height="20"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Position:</Label>
+                <TextBox x:Name="Position_TextBox" Width="175" Height="20"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Salary:</Label>
+                <TextBox x:Name="Salary_TextBox" Width="175" Height="20"/>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Recruiter:</Label>
+                <TextBox x:Name="Recruiter_TextBox" Width="325" Height="20"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Contact Info:</Label>
+                <TextBox x:Name="ContactInfo_TextBox" Width="325" Height="20"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel>
+            <Label>Notes:</Label>
+            <TextBox x:Name="Notes_TextBox" Width="770" Height="300" TextWrapping="Wrap"  AcceptsReturn="true" />
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Save_Button" Grid.Column="0" Height="25" Width="100" Click="Save_Button_Click">Save</Button>
+                <Button x:Name="Close_Button" Grid.Column="1" Height="25" Width="100" Click="Close_Button_Click">Close</Button>
+            </Grid>
+        </StackPanel>
+    </StackPanel>
+</Window>
