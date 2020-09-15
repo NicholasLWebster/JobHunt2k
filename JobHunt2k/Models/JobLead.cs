@@ -15,7 +15,7 @@ namespace JobHunt2k.Models
 
         public override string ToString()
         {
-            return JobInfo.DisplayTitle;
+            return  JobInfo.IsFavorite ? $"⭐{JobInfo.DisplayTitle}⭐" : JobInfo.DisplayTitle;
         }
     }
 }

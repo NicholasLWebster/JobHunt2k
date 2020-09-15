@@ -52,6 +52,7 @@ namespace JobHunt2k
             Recruiter_TextBox.Text = jobInfo.Recruiter;
             ContactInfo_TextBox.Text = jobInfo.ContactInfo;
             Notes_TextBox.Text = jobInfo.JobNotes;
+            IsFavorite_CheckBox.IsChecked = jobInfo.IsFavorite;
         }
 
         private JobInfo GetInputValues()
@@ -65,7 +66,8 @@ namespace JobHunt2k
                 Salary = Salary_TextBox.Text,
                 Recruiter = Recruiter_TextBox.Text,
                 ContactInfo = ContactInfo_TextBox.Text,
-                JobNotes = Notes_TextBox.Text
+                JobNotes = Notes_TextBox.Text,
+                IsFavorite = IsFavorite_CheckBox.IsChecked.GetValueOrDefault(),
             };
         }
 

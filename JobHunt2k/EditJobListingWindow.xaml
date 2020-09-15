@@ -49,15 +49,32 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition Width="85" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>Recruiter:</Label>
-                <TextBox x:Name="Recruiter_TextBox" Width="325" Height="20"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>Contact Info:</Label>
-                <TextBox x:Name="ContactInfo_TextBox" Width="325" Height="20"/>
-            </StackPanel>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">Recruiter:</Label>
+                <TextBox x:Name="Recruiter_TextBox" Grid.Column="1" Width="auto" Height="20"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">Contact Info:</Label>
+                <TextBox Grid.Column="1" x:Name="ContactInfo_TextBox" Height="20"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="55" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">Favorite:</Label>
+                <CheckBox x:Name="IsFavorite_CheckBox" VerticalAlignment="Center" Grid.Column="1" />
+            </Grid>
         </Grid>
         <StackPanel>
             <Label>Notes:</Label>

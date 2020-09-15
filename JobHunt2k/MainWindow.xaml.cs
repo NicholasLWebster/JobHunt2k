@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace JobHunt2k
 {
@@ -31,7 +33,20 @@ namespace JobHunt2k
             Edit_Button.IsEnabled = false;
             Delete_Button.IsEnabled = false;
             selectedJobLead = null;
-            leads.Select(JobLeads_ListBox.Items.Add).ToList(); // ToList() because otherwise it won't actually iterate over.
+            var leadsList = leads
+                .ToList()
+                .OrderBy(lead => !lead.JobInfo.IsFavorite)
+                .ThenBy(lead => lead.JobInfo.DisplayTitle);
+            foreach (var lead in leadsList)
+            {
+                var listBoxItem = new ListBoxItem
+                {
+                    Content = lead,
+                    FontWeight = lead.JobInfo.IsFavorite ? FontWeights.Bold : FontWeights.Normal,
+                    Foreground = lead.JobInfo.IsFavorite ? Brushes.DarkGoldenrod : Brushes.Black,
+                };
+                JobLeads_ListBox.Items.Add(listBoxItem);
+            }
         }
 
         private void CreateJobLead(Guid jobListingId, JobInfo jobInfo)
@@ -58,9 +73,13 @@ namespace JobHunt2k
 
         private void JobLeads_ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            selectedJobLead = (JobLead)JobLeads_ListBox.SelectedItem;
-            Edit_Button.IsEnabled = true;
-            Delete_Button.IsEnabled = true;
+            if (JobLeads_ListBox.SelectedItem != null)
+            {
+                var listBoxItem = (ListBoxItem)JobLeads_ListBox.SelectedItem;
+                selectedJobLead = (JobLead)listBoxItem.Content;
+                Edit_Button.IsEnabled = true;
+                Delete_Button.IsEnabled = true;
+            }
         }
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)

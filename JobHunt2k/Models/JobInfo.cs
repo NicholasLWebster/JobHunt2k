@@ -10,5 +10,6 @@
         public string Recruiter { get; set; }
         public string ContactInfo { get; set; }
         public string JobNotes { get; set; }
+        public bool IsFavorite { get; set; }
     }
 }
