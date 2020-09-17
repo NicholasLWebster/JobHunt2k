@@ -35,8 +35,7 @@ namespace JobHunt2k
             selectedJobLead = null;
             var leadsList = leads
                 .ToList()
-                .OrderBy(lead => !lead.JobInfo.IsFavorite)
-                .ThenBy(lead => lead.JobInfo.DisplayTitle);
+                .OrderBy(lead => lead.DisplayOrder);
             foreach (var lead in leadsList)
             {
                 var listBoxItem = new ListBoxItem
@@ -52,6 +51,7 @@ namespace JobHunt2k
         private void CreateJobLead(Guid jobListingId, JobInfo jobInfo)
         {
             var newLead = new JobLead(jobListingId, jobInfo);
+            newLead.DisplayOrder = leadManager.GetNumberOfJobLeads;
             leadManager.AddJobLead(newLead);
         }
 
@@ -79,6 +79,15 @@ namespace JobHunt2k
                 selectedJobLead = (JobLead)listBoxItem.Content;
                 Edit_Button.IsEnabled = true;
                 Delete_Button.IsEnabled = true;
+                IncreaseDisplayOrder_Button.IsEnabled = JobLeads_ListBox.SelectedIndex < JobLeads_ListBox.Items.Count - 1;
+                DecreaseDisplayOrder_Button.IsEnabled = JobLeads_ListBox.SelectedIndex > 0;
+            }
+            else
+            {
+                Edit_Button.IsEnabled = false;
+                Delete_Button.IsEnabled = false;
+                IncreaseDisplayOrder_Button.IsEnabled = false;
+                DecreaseDisplayOrder_Button.IsEnabled = false;
             }
         }
 
@@ -95,6 +104,21 @@ namespace JobHunt2k
                 leadManager.RemoveJobLead(selectedJobLead);
                 selectedJobLead = null;
             }
+        }
+
+        private void IncreaseDisplayOrder_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var currentSelectedLeadIndex = JobLeads_ListBox.SelectedIndex; 
+            leadManager.IncreaseJobLeadDisplayOrder(selectedJobLead);
+            JobLeads_ListBox.SelectedItem = JobLeads_ListBox.Items[currentSelectedLeadIndex + 1];
+            
+        }
+
+        private void DecreaseDisplayOrder_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var currentSelectedLeadIndex = JobLeads_ListBox.SelectedIndex;
+            leadManager.DecreaseJobLeadDisplayOrder(selectedJobLead);
+            JobLeads_ListBox.SelectedItem = JobLeads_ListBox.Items[currentSelectedLeadIndex - 1];
         }
     }
 }

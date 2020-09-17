@@ -14,6 +14,8 @@ namespace JobHunt2k
         public delegate void UpdateListDisplayCallback(IEnumerable<JobLead> leads);
         private UpdateListDisplayCallback uiCallback;
 
+        public int GetNumberOfJobLeads => jobLeads.Count;
+
         public JobLeadManager(UpdateListDisplayCallback _uiCallback)
         {
             if (File.Exists("./data"))
@@ -60,6 +62,40 @@ namespace JobHunt2k
             else
             {
                 // add logging and/or throw exception here...
+            }
+        }
+
+        public void IncreaseJobLeadDisplayOrder(JobLead leadToIncrease)
+        {
+            var sortedLeads = jobLeads.OrderBy(lead => lead.DisplayOrder).ToArray();
+            for (int i = 0; i < sortedLeads.Length; i++)
+            {
+                var leadAtIndex = sortedLeads[i];
+                if(leadAtIndex == leadToIncrease && i + 1 < sortedLeads.Length)
+                {
+                    var leadToDecrease = sortedLeads[i + 1];
+                    leadToDecrease.DisplayOrder--;
+                    leadToIncrease.DisplayOrder++;
+                    SaveJobLeads();
+                    uiCallback(jobLeads);
+                }   
+            }
+        }
+
+        public void DecreaseJobLeadDisplayOrder(JobLead leadToDecrease)
+        {
+            var sortedLeads = jobLeads.OrderBy(lead => lead.DisplayOrder).ToArray();
+            for (int i = 0; i < sortedLeads.Length; i++)
+            {
+                var leadAtIndex = sortedLeads[i];
+                if (leadAtIndex == leadToDecrease && i > 0)
+                {
+                    var leadToIncrease = sortedLeads[i - 1];
+                    leadToDecrease.DisplayOrder--;
+                    leadToIncrease.DisplayOrder++;
+                    SaveJobLeads();
+                    uiCallback(jobLeads);
+                }
             }
         }
 

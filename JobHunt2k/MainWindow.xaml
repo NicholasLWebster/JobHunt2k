@@ -18,8 +18,18 @@
                 <MenuItem x:Name="Exit_MenuItem" Header="_Exit" Click="Exit_MenuItem_Click"/>
             </MenuItem>
         </Menu>
-        <ListBox x:Name="JobLeads_ListBox" Grid.Row="1" Width="575" SelectionChanged="JobLeads_ListBox_SelectionChanged" />
-        
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="25" />
+            </Grid.ColumnDefinitions>
+            <ListBox Grid.Column="0" x:Name="JobLeads_ListBox" SelectionChanged="JobLeads_ListBox_SelectionChanged" />
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <Button x:Name="DecreaseDisplayOrder_Button" Margin="5,5,5,5" IsEnabled="false" Click="DecreaseDisplayOrder_Button_Click">↑</Button>
+                <Button x:Name="IncreaseDisplayOrder_Button" Margin="5,5,5,5" IsEnabled="false" Click="IncreaseDisplayOrder_Button_Click">↓</Button>
+            </StackPanel>
+        </Grid>
+
         <Grid Grid.Row="2" Height="40px">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
