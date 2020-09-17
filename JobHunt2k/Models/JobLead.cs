@@ -7,6 +7,7 @@ namespace JobHunt2k.Models
         public Guid id { get; set; }
         public int DisplayOrder { get; set; }
         public JobInfo JobInfo { get; set; }
+        public int CurrentModelVersion = 1;
 
         public JobLead(Guid _id,JobInfo _jobInfo)
         {
